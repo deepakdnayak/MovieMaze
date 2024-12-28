@@ -1,8 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Cleanup event listener on component unmount
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <nav className="bg-transparent w-full fixed top-0 left-0 z-10">
+    <nav
+      className={`w-full fixed top-0 left-0 z-10 transition-colors duration-300 ${
+        isScrolled ? "bg-white/20 backdrop-blur-lg" : "bg-transparent"
+      }`}
+    >
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Left Section */}
@@ -43,7 +66,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search movies..."
-              className="px-3 py-2 rounded-md bg-white text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
+              className="px-3 py-2 rounded-md bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
             <button
               type="button"
