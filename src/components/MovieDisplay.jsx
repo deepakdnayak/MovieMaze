@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 
 const MovieDisplay = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [startX, setStartX] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const slideInterval = useRef(null);
 
   // Function to move to the next slide
@@ -9,14 +11,65 @@ const MovieDisplay = ({ slides }) => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
   };
 
+  // Function to move to the previous slide
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
+    );
+  };
+
   // Function to set up the automatic slide transition
   useEffect(() => {
-    slideInterval.current = setInterval(nextSlide, 5000); // 5 seconds delay
+    const startAutoSlide = () => {
+      slideInterval.current = setInterval(nextSlide, 5000); // 5 seconds delay
+    };
+
+    startAutoSlide();
+
     return () => clearInterval(slideInterval.current); // Cleanup on unmount
   }, []);
 
+  // Restart auto slide when user stops dragging
+  const resumeAutoSlide = () => {
+    clearInterval(slideInterval.current);
+    slideInterval.current = setInterval(nextSlide, 5000);
+  };
+
+  // Handle mouse down (start drag)
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.clientX);
+    clearInterval(slideInterval.current); // Pause automatic slide transition during drag
+  };
+
+  // Handle mouse move
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+
+    const diff = e.clientX - startX;
+    if (diff > 100) {
+      prevSlide(); // Dragging right
+      setIsDragging(false);
+    } else if (diff < -100) {
+      nextSlide(); // Dragging left
+      setIsDragging(false);
+    }
+  };
+
+  // Handle mouse up (end drag)
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    resumeAutoSlide(); // Resume automatic slide transition
+  };
+
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div
+      className="relative w-full h-screen overflow-hidden"
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp} // Handle drag ending when mouse leaves the slide area
+    >
       <div
         className="flex transition-transform duration-1000 ease-in-out"
         style={{
