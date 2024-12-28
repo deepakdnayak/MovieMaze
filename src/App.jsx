@@ -2,8 +2,8 @@ import './App.css'
 import MovieDisplay from './components/MovieDisplay';
 import Navbar from './components/Navbar'
 import TrendingMovies from './components/TrendingMovies';
+import VideoPlayer from './components/VideoPLayer';
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import WatchMovie from './components/WatchMovie';
 
 function App() {
 
@@ -52,6 +52,24 @@ function App() {
       genres: ["Animation", "Science Fiction", "Nature", "Adventure"],
     },
   ];
+
+  const recomendedMovies = [
+    {
+      title: "Frozen",
+      poster: "https://i.etsystatic.com/18242346/r/il/47f8d2/2144427125/il_570xN.2144427125_t7fz.jpg",
+      genres: ["Animation", "Kids", "Musical", "Adventure"],
+    },
+    {
+      title: "Tangled",
+      poster: "https://m.media-amazon.com/images/M/MV5BMTAxNDYxMjg0MjNeQTJeQWpwZ15BbWU3MDcyNTk2OTM@._V1_FMjpg_UX1000_.jpg",
+      genres: ["Animation", "Kids", "Fantacy", "Adventure"],
+    },
+    {
+      title: "WALL-E",
+      poster: "https://c4.wallpaperflare.com/wallpaper/332/787/778/movie-wall%C2%B7e-wallpaper-preview.jpg",
+      genres: ["Animation", "Science Fiction", "Nature", "Adventure"],
+    }
+  ]
   
     
   return (
@@ -59,7 +77,7 @@ function App() {
       <Navbar />
       {/* <MovieDisplay slides={slides} />
       <TrendingMovies movies={movies} /> */}
-      <WatchMovie/>
+      <VideoPlayer recomendedMovies={recomendedMovies} />
 
     </div>
   )
