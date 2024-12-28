@@ -3,6 +3,7 @@ import MovieDisplay from './components/MovieDisplay';
 import Navbar from './components/Navbar'
 import TrendingMovies from './components/TrendingMovies';
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import WatchMovie from './components/WatchMovie';
 
 function App() {
 
@@ -56,9 +57,9 @@ function App() {
   return (
     <div>
       <Navbar />
-      {/* <div className="bg-blue-200" >HI<br/>hi<br/>hi<br/>hi<br/>hi<br/>hi<br/>hi<br/>hi</div> */}
-      <MovieDisplay slides={slides} />
-      <TrendingMovies movies={movies} />
+      {/* <MovieDisplay slides={slides} />
+      <TrendingMovies movies={movies} /> */}
+      <WatchMovie/>
 
     </div>
   )
