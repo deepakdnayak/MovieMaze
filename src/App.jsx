@@ -1,7 +1,8 @@
 import './App.css'
-import MovieDisplay from './components/MovieDisplay ';
+import MovieDisplay from './components/MovieDisplay';
 import Navbar from './components/Navbar'
 import TrendingMovies from './components/TrendingMovies';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 function App() {
 

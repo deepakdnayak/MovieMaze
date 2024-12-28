@@ -5,18 +5,22 @@ const MovieDisplay = () => {
     <div
       className="relative w-full h-screen bg-cover bg-center flex items-center"
       style={{
-        backgroundImage: "url('https://c4.wallpaperflare.com/wallpaper/557/321/173/movie-frozen-2-anna-frozen-elsa-frozen-kristoff-frozen-hd-wallpaper-preview.jpg')",
+        backgroundImage:
+          "url('https://c4.wallpaperflare.com/wallpaper/557/321/173/movie-frozen-2-anna-frozen-elsa-frozen-kristoff-frozen-hd-wallpaper-preview.jpg')",
       }}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
+      {/* Bottom Gradient Effect */}
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent to-black"></div>
+
       {/* Content */}
       <div className="relative max-w-4xl text-white text-left px-6 ms-10">
         <h1 className="text-8xl font-bold mb-4">Frozen</h1>
         <p className="text-xl mb-6">
-        Fearless Anna teams up with Kristoff and a snowman named Olaf to find her 
-        sister Elsa, whose icy powers have trapped the kingdom in eternal winter.
+          Fearless Anna teams up with Kristoff and a snowman named Olaf to find her 
+          sister Elsa, whose icy powers have trapped the kingdom in eternal winter.
         </p>
         {/* Genres */}
         <div className="mb-6 text-xl flex space-x-4">
