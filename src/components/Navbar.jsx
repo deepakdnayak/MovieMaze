@@ -31,7 +31,7 @@ const Navbar = () => {
           {/* Left Section */}
           <div className="flex items-center">
             <a href="/" className="text-3xl font-bold text-white">
-              Stapak
+            MovieMaze
             </a>
             <div className="ml-10 flex space-x-4">
               <a
