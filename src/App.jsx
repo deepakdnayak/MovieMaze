@@ -1,6 +1,7 @@
 import './App.css'
 import MovieDisplay from './components/MovieDisplay';
 import Navbar from './components/Navbar'
+import SearchResults from './components/SearchResults';
 import TrendingMovies from './components/TrendingMovies';
 import VideoPlayer from './components/VideoPLayer';
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -70,14 +71,28 @@ function App() {
       genres: ["Animation", "Science Fiction", "Nature", "Adventure"],
     }
   ]
+
+  const searchedMovies = [
+    {
+      title: "Frozen",
+      poster: "https://m.media-amazon.com/images/I/819lixgNvOL._AC_UF1000,1000_QL80_.jpg",
+      genres: ["Animation", "Kids", "Musical", "Adventure"],
+    },
+    {
+      title: "Frozen 2",
+      poster: "https://i.etsystatic.com/18242346/r/il/47f8d2/2144427125/il_570xN.2144427125_t7fz.jpg",
+      genres: ["Animation", "Kids", "Musical", "Adventure"],
+    },
+  ];
   
     
   return (
     <div>
       <Navbar />
       {/* <MovieDisplay slides={slides} />
-      <TrendingMovies movies={movies} /> */}
-      <VideoPlayer recomendedMovies={recomendedMovies} />
+      <TrendingMovies movies={movies} />
+      <VideoPlayer recomendedMovies={recomendedMovies} /> */}
+      <SearchResults searchedMovies={searchedMovies} />
 
     </div>
   )
