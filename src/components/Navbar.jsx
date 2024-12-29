@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ setSearchQuery }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [input, setInput] = useState(''); // Create a state variable called input and a function called setInput to update it
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    setSearchQuery(input); // Update the searchQuery state variable with the input value
+    navigate('/searchResults'); // Navigate to the searchResults
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,11 +73,14 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             <input
               type="text"
+              value={input} // Set the value of the input field to the input state variable
+              onChange={(e) => setInput(e.target.value)} // Update the input state variable on change
               placeholder="Search movies..."
               className="px-3 py-2 rounded-md bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-600"
             />
             <button
               type="button"
+              onClick={handleSearch} // Call the handleSearch function on click
               className="text-white hover:text-gray-300 p-2 rounded-md focus:outline-none"
             >
               <svg

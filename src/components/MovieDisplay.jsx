@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const MovieDisplay = ({ slides }) => {
+const MovieDisplay = ({ slides, handleMovieClick }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startX, setStartX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -100,7 +100,7 @@ const MovieDisplay = ({ slides }) => {
                 ))}
               </div>
               <div className="flex space-x-4">
-                <button className="px-10 py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-lg font-medium">
+                <button className="px-10 py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-lg font-medium" onClick={handleMovieClick}>
                   Watch Now
                 </button>
               </div>

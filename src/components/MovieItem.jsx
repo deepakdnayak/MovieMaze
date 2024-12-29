@@ -1,8 +1,8 @@
 import React from "react";
 
-const MovieItem = ({ title, poster, genres }) => {
+const MovieItem = ({ title, poster, genres, onClick }) => {
   return (
-    <div className="bg-gray-800 rounded-lg p-4 hover:scale-105 transition-transform">
+    <div className="bg-gray-800 rounded-lg p-4 hover:scale-105 transition-transform" onClick={onClick}>
       <img
         src={poster}
         alt={title}

@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-const TrendingMovies = ({ movies }) => {
+const TrendingMovies = ({ movies, handleMovieClick }) => {
   const scrollContainer = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -55,24 +55,34 @@ const TrendingMovies = ({ movies }) => {
     e.preventDefault();
   };
 
+  // Check if the screen width is small (mobile view)
+  const isMobile = window.innerWidth < 768;
+
   return (
     <div className="p-6 font-sans bg-black relative">
       <h2 className="text-5xl font-extrabold text-white my-10">Trending Movies</h2>
       <div className="relative flex items-center">
-        {/* Scroll Left Button */}
-        <button
-          onClick={handleScrollLeft}
-          className="absolute z-10 bg-gray-800 text-white rounded-md w-10 h-full flex items-center justify-center left-2 transform -translate-x-1/2 hover:bg-gray-300 hover:text-black transition-colors duration-300"
-        >
-          <span className="text-lg">
-            <i className="fas fa-angle-left"></i>
-          </span>
-        </button>
+        {/* Conditionally render buttons only on larger screens */}
+        {!isMobile && (
+          <>
+            {/* Scroll Left Button */}
+            <button
+              onClick={handleScrollLeft}
+              className="absolute z-10 bg-gray-800 text-white rounded-md w-10 h-full flex items-center justify-center left-2 transform -translate-x-1/2 hover:bg-gray-300 hover:text-black transition-colors duration-300"
+            >
+              <span className="text-lg">
+                <i className="fas fa-angle-left"></i>
+              </span>
+            </button>
+          </>
+        )}
 
         {/* Scrollable Movies */}
         <div
           ref={scrollContainer}
-          className="flex overflow-x-scroll gap-6 pb-4 mx-12 relative no-scrollbar" // Added the 'no-scrollbar' class here
+          className={`flex overflow-x-scroll gap-6 pb-4 ${
+            isMobile ? "mx-0" : "mx-12"
+          } relative no-scrollbar`}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
@@ -82,7 +92,7 @@ const TrendingMovies = ({ movies }) => {
           {movies.map((movie, index) => (
             <div
               className="flex-shrink-0 w-56 rounded-xl shadow-lg bg-white"
-              key={index}
+              key={index} onClick={handleMovieClick}
             >
               <img
                 src={movie.poster}
@@ -97,15 +107,20 @@ const TrendingMovies = ({ movies }) => {
           ))}
         </div>
 
-        {/* Scroll Right Button */}
-        <button
-          onClick={handleScrollRight}
-          className="absolute z-10 bg-gray-800 text-white rounded-md w-10 h-full flex items-center justify-center right-2 transform translate-x-1/2 hover:bg-gray-300 hover:text-black transition-colors duration-300"
-        >
-          <span className="text-lg">
-            <i className="fas fa-angle-right"></i>
-          </span>
-        </button>
+        {/* Conditionally render Scroll Right Button */}
+        {!isMobile && (
+          <>
+            {/* Scroll Right Button */}
+            <button
+              onClick={handleScrollRight}
+              className="absolute z-10 bg-gray-800 text-white rounded-md w-10 h-full flex items-center justify-center right-2 transform translate-x-1/2 hover:bg-gray-300 hover:text-black transition-colors duration-300"
+            >
+              <span className="text-lg">
+                <i className="fas fa-angle-right"></i>
+              </span>
+            </button>
+          </>
+        )}
       </div>
     </div>
   );
