@@ -1,6 +1,7 @@
 import React from "react";
 import MovieItem from "./MovieItem";
 import { useNavigate } from "react-router-dom";
+import ScrollToTop from "./ScrollToTop";
 
 const Kids = () => {
 
@@ -73,6 +74,7 @@ const Kids = () => {
 
   return (
     <>
+      <ScrollToTop/>
       {/* Navbar Placeholder */}
       <div className="h-16 bg-gray-800 w-full flex items-center px-6"></div>
 

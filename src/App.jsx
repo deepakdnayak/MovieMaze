@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';  // Import the 
 import Movies from './components/Movies';
 import Series from './components/Series';
 import Kids from './components/Kids';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() { 
 
@@ -18,6 +19,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Navbar setSearchQuery={setSearchQuery} />
+        <ScrollToTop/>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/video" element={<VideoPlayer />} />
