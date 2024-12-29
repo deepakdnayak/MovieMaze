@@ -104,8 +104,8 @@ const MovieDisplay = ({ slides, slidesForMobile, handleMovieClick }) => {
               backgroundImage: `url(${slide.image})`,
             }}
           >
-            {/* Dark overlay */}
-            <div className="absolute inset-0 bg-black opacity-50"></div>
+            {/* Gradient overlay to blend bottom edge */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black"></div>
 
             {/* Content */}
             <div className="relative max-w-4xl text-white text-left px-6 md:px-10 h-full flex flex-col justify-center z-10">
@@ -120,7 +120,10 @@ const MovieDisplay = ({ slides, slidesForMobile, handleMovieClick }) => {
                 ))}
               </div>
               <div className="flex space-x-2 md:space-x-4">
-                <button className="px-6 py-2 md:px-10 md:py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-sm md:text-lg font-medium" onClick={handleMovieClick}>
+                <button
+                  className="px-6 py-2 md:px-10 md:py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-sm md:text-lg font-medium"
+                  onClick={handleMovieClick}
+                >
                   Watch Now
                 </button>
               </div>
