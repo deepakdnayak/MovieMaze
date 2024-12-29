@@ -106,7 +106,7 @@ const Movies = () => {
       <div className="h-16 bg-gray-800 w-full flex items-center px-6"></div>
 
       <div className="bg-gray-900 text-white min-h-screen p-6">
-        <h2 className="text-7xl font-bold text-pink-300 my-10">Movies</h2>
+        <h2 className="text-7xl font-bold text-pink-300 my-5">Movies</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {movies.map((movie, index) => (
