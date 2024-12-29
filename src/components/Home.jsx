@@ -2,6 +2,7 @@ import React from 'react'
 import MovieDisplay from './MovieDisplay'
 import TrendingMovies from './TrendingMovies';
 import { useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 const Home = () => {
 
@@ -69,6 +70,7 @@ const Home = () => {
     <div>
         <MovieDisplay slides={slides} handleMovieClick={handleMovieClick} />
         <TrendingMovies movies={movies} handleMovieClick={handleMovieClick} />
+        <Footer />
     </div>
   )
 }

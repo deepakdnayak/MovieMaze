@@ -88,19 +88,19 @@ const MovieDisplay = ({ slides, handleMovieClick }) => {
             <div className="absolute inset-0 bg-black opacity-50"></div>
 
             {/* Content */}
-            <div className="relative max-w-4xl text-white text-left px-6 ms-10 h-full flex flex-col justify-center z-10">
-              <h1 className="text-8xl font-bold mb-4">{slide.title}</h1>
-              <p className="text-xl mb-6">{slide.description}</p>
+            <div className="relative max-w-4xl text-white text-left px-6 md:px-10 h-full flex flex-col justify-center z-10">
+              <h1 className="text-4xl md:text-8xl font-bold mb-4">{slide.title}</h1>
+              <p className="text-sm md:text-xl mb-6">{slide.description}</p>
               {/* Genres */}
-              <div className="mb-6 text-xl flex space-x-4">
+              <div className="mb-6 text-sm md:text-xl flex space-x-2 md:space-x-4">
                 {slide.genres.map((genre, genreIndex) => (
-                  <span key={genreIndex} className="pe-3 py-1 font-bold">
+                  <span key={genreIndex} className="px-2 py-1 md:px-3 font-bold">
                     {genre}
                   </span>
                 ))}
               </div>
-              <div className="flex space-x-4">
-                <button className="px-10 py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-lg font-medium" onClick={handleMovieClick}>
+              <div className="flex space-x-2 md:space-x-4">
+                <button className="px-6 py-2 md:px-10 md:py-3 bg-blue-600 hover:bg-blue-700 rounded-md text-sm md:text-lg font-medium" onClick={handleMovieClick}>
                   Watch Now
                 </button>
               </div>
@@ -114,7 +114,7 @@ const MovieDisplay = ({ slides, handleMovieClick }) => {
         {slides.map((_, index) => (
           <span
             key={index}
-            className={`block w-4 h-4 rounded-full ${
+            className={`block w-2 h-2 md:w-4 md:h-4 rounded-full ${
               currentIndex === index ? "bg-white" : "bg-gray-500"
             }`}
           ></span>
