@@ -1,20 +1,40 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const MovieDisplay = ({ slides, handleMovieClick }) => {
+const MovieDisplay = ({ slides, slidesForMobile, handleMovieClick }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startX, setStartX] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [currentSlides, setCurrentSlides] = useState(slides);
   const slideInterval = useRef(null);
+
+  // Function to determine the set of slides based on screen size
+  const updateSlidesBasedOnScreen = () => {
+    if (window.innerWidth < 768) {
+      setCurrentSlides(slidesForMobile); // Mobile images for small screens
+    } else {
+      setCurrentSlides(slides); // Default images for medium and large screens
+    }
+  };
+
+  // Detect screen size on mount and on resize
+  useEffect(() => {
+    updateSlidesBasedOnScreen();
+    window.addEventListener("resize", updateSlidesBasedOnScreen);
+
+    return () => {
+      window.removeEventListener("resize", updateSlidesBasedOnScreen);
+    };
+  }, []);
 
   // Function to move to the next slide
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % currentSlides.length);
   };
 
   // Function to move to the previous slide
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? slides.length - 1 : prevIndex - 1
+      prevIndex === 0 ? currentSlides.length - 1 : prevIndex - 1
     );
   };
 
@@ -27,7 +47,7 @@ const MovieDisplay = ({ slides, handleMovieClick }) => {
     startAutoSlide();
 
     return () => clearInterval(slideInterval.current); // Cleanup on unmount
-  }, []);
+  }, [currentSlides]);
 
   // Restart auto slide when user stops dragging
   const resumeAutoSlide = () => {
@@ -76,7 +96,7 @@ const MovieDisplay = ({ slides, handleMovieClick }) => {
           transform: `translateX(-${currentIndex * 100}%)`,
         }}
       >
-        {slides.map((slide, index) => (
+        {currentSlides.map((slide, index) => (
           <div
             key={index}
             className="w-full flex-shrink-0 h-screen bg-cover bg-center relative"
@@ -111,7 +131,7 @@ const MovieDisplay = ({ slides, handleMovieClick }) => {
 
       {/* Scroll Indicators */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {slides.map((_, index) => (
+        {currentSlides.map((_, index) => (
           <span
             key={index}
             className={`block w-2 h-2 md:w-4 md:h-4 rounded-full ${

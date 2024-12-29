@@ -54,6 +54,39 @@ const Home = () => {
         },
       ];
 
+      const slidesForMobile = [
+        {
+          image: "https://lumiere-a.akamaihd.net/v1/images/image_bf2c13ad.jpeg",
+          title: "Frozen",
+          description: "Fearless Anna teams up with Kristoff and a snowman named Olaf to find her sister Elsa, whose icy powers have trapped the kingdom in eternal winter.",
+          genres: ["Animation", "Kids", "Musical", "Adventure"],
+        },
+        {
+          image: "https://gonewiththetwins.com/wp-content/uploads/2010/11/tangled_tall.jpg",
+          title: "Tangled",
+          description: "The kingdom's most-wanted bandit Flynn Rider is taken hostage by Rapunzel, a teen with 70 feet of hair, and the unlikely duo sets off on a hilarious adventure.",
+          genres: ["Animation", "Kids", "Fantacy", "Adventure"],
+        },
+        {
+          image: "https://i.pinimg.com/564x/1a/c5/07/1ac50738efb4c1390aa5097516f5a12a.jpg",
+          title: "Tinker Bell and Lost Treasure",
+          description: "Tinker Bell journey far North of Never Land to patch things up with her friend Terence and restore a Pixie Dust Tree",
+          genres: ["Animation", "Kids", "Fantacy", "Adventure"],
+        },
+        {
+          image: "https://lumiere-a.akamaihd.net/v1/images/image_809c2428.jpeg",
+          title: "The Lion King",
+          description: "In the African savanna, a young prince overcomes betrayal and tragedy to assume his rightful place on Pride Rock.",
+          genres: ["Musical |", "Fantacy", "Adventure"],
+        },
+        {
+          image: "https://www.tallengestore.com/cdn/shop/products/WallE-HollywoodAnimationClassicMoviePoster_cb160162-07c5-47e9-a5b5-71c9e477ad88.jpg?v=1591603097",
+          title: "WALL-E",
+          description: "After hundreds of lonely years of doing what he was built for, the robot WALL-E discovers a new purpose in life when he meets a sleek search robot named Eve.",
+          genres: ["Animation", "Science Fiction", "Nature", "Adventure"],
+        },
+      ];
+
       const dummyMovie = {
         title: "Frozen",
         poster: "https://m.media-amazon.com/images/I/819lixgNvOL._AC_UF1000,1000_QL80_.jpg",
@@ -68,7 +101,7 @@ const Home = () => {
 
   return (
     <div>
-        <MovieDisplay slides={slides} handleMovieClick={handleMovieClick} />
+        <MovieDisplay slides={slides} slidesForMobile={slidesForMobile} handleMovieClick={handleMovieClick} />
         <TrendingMovies movies={movies} handleMovieClick={handleMovieClick} />
         <Footer />
     </div>
