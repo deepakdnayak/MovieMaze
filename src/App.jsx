@@ -6,6 +6,9 @@ import SearchResults from './components/SearchResults'; // Import the SearchResu
 import VideoPlayer from './components/VideoPLayer'; // Import the VideoPlayer component
 import "@fortawesome/fontawesome-free/css/all.min.css"; // Import the FontAwesome icons
 import { BrowserRouter, Routes, Route } from 'react-router-dom';  // Import the BrowserRouter, Routes and Route components
+import Movies from './components/Movies';
+import Series from './components/Series';
+import Kids from './components/Kids';
 
 function App() { 
 
@@ -19,6 +22,9 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/video" element={<VideoPlayer />} />
           <Route path='/searchResults' element={<SearchResults searchQuery={searchQuery} />} />
+          <Route path='/movies' element={<Movies />} />
+          <Route path='/series' element={<Series/>} />
+          <Route path='/kids' element={<Kids/>} />
         </Routes>
       </BrowserRouter>
     </div>
