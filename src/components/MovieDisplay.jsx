@@ -55,18 +55,20 @@ const MovieDisplay = ({ slides, slidesForMobile, handleMovieClick }) => {
     slideInterval.current = setInterval(nextSlide, 5000);
   };
 
-  // Handle mouse down (start drag)
-  const handleMouseDown = (e) => {
+  // Handle mouse or touch start (begin drag)
+  const handleStart = (e) => {
     setIsDragging(true);
-    setStartX(e.clientX);
+    setStartX(e.touches ? e.touches[0].clientX : e.clientX);
     clearInterval(slideInterval.current); // Pause automatic slide transition during drag
   };
 
-  // Handle mouse move
-  const handleMouseMove = (e) => {
+  // Handle mouse or touch move
+  const handleMove = (e) => {
     if (!isDragging) return;
 
-    const diff = e.clientX - startX;
+    const currentX = e.touches ? e.touches[0].clientX : e.clientX;
+    const diff = currentX - startX;
+
     if (diff > 100) {
       prevSlide(); // Dragging right
       setIsDragging(false);
@@ -76,8 +78,8 @@ const MovieDisplay = ({ slides, slidesForMobile, handleMovieClick }) => {
     }
   };
 
-  // Handle mouse up (end drag)
-  const handleMouseUp = () => {
+  // Handle mouse or touch end (stop drag)
+  const handleEnd = () => {
     setIsDragging(false);
     resumeAutoSlide(); // Resume automatic slide transition
   };
@@ -85,10 +87,13 @@ const MovieDisplay = ({ slides, slidesForMobile, handleMovieClick }) => {
   return (
     <div
       className="relative w-full h-screen overflow-hidden"
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp} // Handle drag ending when mouse leaves the slide area
+      onMouseDown={handleStart}
+      onMouseMove={handleMove}
+      onMouseUp={handleEnd}
+      onMouseLeave={handleEnd} // Handle drag ending when mouse leaves the slide area
+      onTouchStart={handleStart}
+      onTouchMove={handleMove}
+      onTouchEnd={handleEnd}
     >
       <div
         className="flex transition-transform duration-1000 ease-in-out"
